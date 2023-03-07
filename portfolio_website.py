@@ -33,7 +33,7 @@ col_3,col_4= st.columns(2)
 #creating a data frame using pandas to extract "title","description',"image etc
 df=pandas.read_csv("data.csv",sep=";")
 
-print(df)
+#print(df)
 
 
 ## opening the col_3 with context manager
@@ -44,10 +44,12 @@ with col_3:
         #extracting title and writing it on webapp
         st.header(row["title"])
         st.write(row["description"])
+        #image method to add image
         st.image("App Images/"+row['image'])
-
-
-
+        #  link is wrote in()along with text in [] . eg. [click here](www.python.com)
+        text = "Source Code"
+        link = row["url"]
+        st.markdown(f"[{text}]({link})", unsafe_allow_html=True)
 
 ## opening the col_4 with context manager
 with col_4:
@@ -56,6 +58,13 @@ with col_4:
         st.header(row["title"])
         st.write(row["description"])
         st.image("App Images/" + row['image'])
+        #  link is wrote in()along with text in [] . eg. [click here](www.python.com)
+        text="Source Code"
+        link=row["url"]
+        st.markdown(f"[{text}]({link})", unsafe_allow_html=True)
+
+
+
 
 
 
