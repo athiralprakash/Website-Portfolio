@@ -1,4 +1,6 @@
+import pandas
 import streamlit as st
+
 
 #creating page configuration
 st.set_page_config(layout="wide")
@@ -11,7 +13,7 @@ with col_1 :
     #adding image
     st.image("App Images/alp.jpg")
 
-# opening the col1 with context manager
+# opening the col_2 with context manager
 with col_2:
     # adding Title
     st.title("Athira Lakshmi Prakash")
@@ -24,6 +26,36 @@ I love building Apps from the scratch , adding features to another apps and fixi
 #adding a note
 content="Have a look at cool Apps i built in Python . Feel free to contact me for your feedback , suggestion and collaboration"
 st.write(content)
+
+#adding two columns for the projects, description,image and source code
+col_3,col_4= st.columns(2)
+
+#creating a data frame using pandas to extract "title","description',"image etc
+df=pandas.read_csv("data.csv",sep=";")
+
+print(df)
+
+
+## opening the col_3 with context manager
+with col_3:
+    #extracting the details from data.csv files by converting that to a data frame.
+    #iterating through the rows of df
+    for index,row in df[:10].iterrows():
+        #extracting title and writing it on webapp
+        st.header(row["title"])
+        st.write(row["description"])
+        st.image("App Images/"+row['image'])
+
+
+
+
+## opening the col_4 with context manager
+with col_4:
+    for index,row in df[10:].iterrows():
+        #extracting title and writing it on webapp
+        st.header(row["title"])
+        st.write(row["description"])
+        st.image("App Images/" + row['image'])
 
 
 
